@@ -1,0 +1,6 @@
+bindsym $mod+Print exec \
+    import -window $( \
+        i3-msg -t get_tree | \
+        jq 'recurse(.nodes[]) | select(.focused).window' \
+    ) png:- | \
+    xclip -selection clipboard -t image/png
